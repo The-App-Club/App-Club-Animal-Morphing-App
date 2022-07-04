@@ -1,0 +1,33 @@
+<svg class='_onImage' height='600' width='600' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns='http://www.w3.org/2000/svg'>
+  <pattern height='363' id='box' patternTransform='translate(303, 0)' patternUnits='userSpaceOnUse' style='fill:none;stroke:black;stroke-width:1' viewBox='0 0 804 1452' width='201'>
+    <g id='green_yellow_orange' style='stroke:#281824'>
+      <polygon points='9 924 203 814 396 923 204 1032' style='fill:#275d50;stroke-width:2'/>
+      <polygon points='4 927 201 1038 201 1281 4 1174' style='fill:#F9c057;stroke-width:4'/>
+      <polygon points='-1 1018 131 1093 132 1244 0 1174' style='fill:none;stroke-width:7'/>
+      <polygon points='2 1067 91 1118 90 1221 3 1172' style='fill:#f38c03;stroke-width:7'/>
+      <polygon points='206 1039 401 929 399 1171 207 1279' style='fill:#F9c057;stroke-width:1'/>
+      <polygon points='274 1094 406 1019 402 1166 275 1248' style='fill:none;stroke-width:7'/>
+      <polygon points='316 1117 403 1069 403 1172 315 1222' style='fill:#f38c03;stroke-width:7'/>
+    </g>
+    <use xlink:href='#green_yellow_orange' transform='translate(201, -1089)'/>
+    <use xlink:href='#green_yellow_orange' transform='translate(402, -726)'/>
+    <use xlink:href='#green_yellow_orange' transform='translate(603, -363)'/>
+    <use xlink:href='#green_yellow_orange' transform='translate(-201, -363)'/>
+    <use xlink:href='#green_yellow_orange' transform='translate(201, 363)'/>
+    <g id='yellow_green' style='stroke:#281824;stroke-width:1'>
+      <polygon points='411 922 604 814 797 922 603 1031' style='fill:#f9c059'/>
+      <polygon points='407 929 600 1038 601 1279 407 1169' style='fill:#178e68'/>
+      <polygon points='607 1038 800 929 800 1171 608 1279' style='fill:#178e68'/>
+    </g>
+    <use xlink:href='#yellow_green' transform='translate(-601, 364)'/>
+    <use xlink:href='#yellow_green' transform='translate(199, 362)'/>
+    <use xlink:href='#yellow_green' transform='translate(-200, -362)'/>
+    <use xlink:href='#yellow_green' transform='translate(-401, -725)'/>
+    <use xlink:href='#yellow_green' transform='translate(-602, -1090)'/>
+    <use xlink:href='#yellow_green' transform='translate(202, -1089)'/>
+  </pattern>
+  <rect height='100%' style='fill:white' width='100%'/>
+  <rect height='100%' style='fill:#892945' width='51%'/>
+  <rect height='100%' style='fill:#281824' width='50%' x='51%'/>
+  <rect height='100%' style='fill:url(#box)' width='297' x='303'/>
+</svg>

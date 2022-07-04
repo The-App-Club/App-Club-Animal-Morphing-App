@@ -1,0 +1,5 @@
+- Reference
+  - [getting-gradients-to-follow-along-svg-paths-in-javascript](https://medium.com/@cereallarceny/getting-gradients-to-follow-along-svg-paths-in-javascript-45357b60bed7)
+  - [svg gradinet](https://developer.mozilla.org/ja/docs/Web/SVG/Tutorial/Gradients)
+  - [gradient-path demo](https://codesandbox.io/s/gradient-path-wstzn?fontsize=14&file=/src/index.js:6-41)
+  - [gradient-path](https://github.com/cereallarceny/gradient-path)
