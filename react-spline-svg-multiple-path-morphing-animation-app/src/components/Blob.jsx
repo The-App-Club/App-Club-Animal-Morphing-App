@@ -20,6 +20,8 @@ const Blob = ({
   noiseStep = 0.005,
   count = 2,
 }) => {
+  const [resized, setResized] = useState(new Date());
+
   const id = useId();
   const svgDomRef = useRef(null);
   const pathDomRef = useRef(null);
@@ -75,49 +77,83 @@ const Blob = ({
     }
   };
 
+  const handleResize = (e) => {
+    setResized(new Date());
+  };
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   useEffect(() => {
     let noiseStep = 0.005;
     const points1 = createPoints({
       edgeCount: 5,
-      radius: 220,
-      offsetX: window.innerWidth / 2,
-      offsetY: window.innerHeight / 2 + 150,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 40 : 220,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches
+        ? 40
+        : window.innerWidth / 2,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches
+        ? 40
+        : window.innerHeight / 2 + 150,
     });
     const points2 = createPoints({
       edgeCount: 5,
-      radius: 120,
-      offsetX: window.innerWidth / 2 - 250,
-      offsetY: window.innerHeight / 2 - 100,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 40 : 120,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches
+        ? 40
+        : window.innerWidth / 2 - 250,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches
+        ? 200
+        : window.innerHeight / 2 - 100,
     });
     const points3 = createPoints({
       edgeCount: 8,
-      radius: 125,
-      offsetX: window.innerWidth / 2 + 250,
-      offsetY: window.innerHeight / 2 - 150,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 50 : 125,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches
+        ? 140
+        : window.innerWidth / 2 + 250,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches
+        ? 0
+        : window.innerHeight / 2 - 150,
     });
     const points4 = createPoints({
       edgeCount: 4,
-      radius: 220,
-      offsetX: 400,
-      offsetY: window.innerHeight / 2 - 200,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 30 : 220,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches ? 140 : 400,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches
+        ? 120
+        : window.innerHeight / 2 - 200,
     });
     const points5 = createPoints({
       edgeCount: 5,
-      radius: 180,
-      offsetX: 250,
-      offsetY: window.innerHeight - 250,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 30 : 180,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches ? 70 : 250,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches
+        ? 80
+        : window.innerHeight - 250,
     });
     const points6 = createPoints({
       edgeCount: 9,
-      radius: 200,
-      offsetX: window.innerWidth - 250,
-      offsetY: window.innerHeight - 220,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 30 : 200,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches
+        ? 130
+        : window.innerWidth - 250,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches
+        ? 230
+        : window.innerHeight - 220,
     });
     const points7 = createPoints({
       edgeCount: 9,
-      radius: 200,
-      offsetX: window.innerWidth - 350,
-      offsetY: 300,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 20 : 200,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches
+        ? 90
+        : window.innerWidth - 350,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches ? 140 : 300,
     });
     const pathDom = pathDomRef.current;
     (function animate() {
@@ -134,16 +170,16 @@ const Blob = ({
         }`
       );
       doNoise({noiseStep, points: points1, amplitude: 20});
-      doNoise({noiseStep, points: points2, amplitude: 50});
+      doNoise({noiseStep, points: points2, amplitude: 30});
       doNoise({noiseStep, points: points3, amplitude: 10});
       doNoise({noiseStep, points: points4, amplitude: 30});
-      doNoise({noiseStep, points: points5, amplitude: 60});
-      doNoise({noiseStep, points: points6, amplitude: 30});
-      doNoise({noiseStep, points: points7, amplitude: 70});
+      doNoise({noiseStep, points: points5, amplitude: 20});
+      doNoise({noiseStep, points: points6, amplitude: 10});
+      doNoise({noiseStep, points: points7, amplitude: 10});
       requestAnimationFrame(animate);
     })();
     return () => {};
-  }, []);
+  }, [resized]);
 
   useEffect(() => {
     const svgDom = svgDomRef.current;
