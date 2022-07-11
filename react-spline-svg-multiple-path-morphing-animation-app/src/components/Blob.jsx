@@ -93,67 +93,71 @@ const Blob = ({
     let noiseStep = 0.005;
     const points1 = createPoints({
       edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 40 : 220,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
       offsetX: window.matchMedia(`(max-width: 768px)`).matches
-        ? 40
+        ? window.innerWidth / 2 + 120
         : window.innerWidth / 2,
       offsetY: window.matchMedia(`(max-width: 768px)`).matches
-        ? 40
+        ? window.innerHeight / 2 + 300
         : window.innerHeight / 2 + 150,
     });
     const points2 = createPoints({
       edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 40 : 120,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 80 : 120,
       offsetX: window.matchMedia(`(max-width: 768px)`).matches
-        ? 40
+        ? window.innerWidth / 2 - 150
         : window.innerWidth / 2 - 250,
       offsetY: window.matchMedia(`(max-width: 768px)`).matches
-        ? 200
+        ? window.innerHeight / 2 - 50
         : window.innerHeight / 2 - 100,
     });
     const points3 = createPoints({
       edgeCount: 8,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 50 : 125,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 60 : 125,
       offsetX: window.matchMedia(`(max-width: 768px)`).matches
-        ? 140
+        ? window.innerWidth / 2 + 100
         : window.innerWidth / 2 + 250,
       offsetY: window.matchMedia(`(max-width: 768px)`).matches
-        ? 0
+        ? window.innerHeight / 2 - 150
         : window.innerHeight / 2 - 150,
     });
     const points4 = createPoints({
       edgeCount: 4,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 30 : 220,
-      offsetX: window.matchMedia(`(max-width: 768px)`).matches ? 140 : 400,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 110 : 220,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches
+        ? window.innerWidth - 100
+        : 400,
       offsetY: window.matchMedia(`(max-width: 768px)`).matches
-        ? 120
+        ? 0
         : window.innerHeight / 2 - 200,
     });
     const points5 = createPoints({
       edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 30 : 180,
-      offsetX: window.matchMedia(`(max-width: 768px)`).matches ? 70 : 250,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 90 : 180,
+      offsetX: window.matchMedia(`(max-width: 768px)`).matches
+        ? window.innerWidth / 2 - 100
+        : 250,
       offsetY: window.matchMedia(`(max-width: 768px)`).matches
-        ? 80
+        ? window.innerHeight / 2 + 250
         : window.innerHeight - 250,
     });
     const points6 = createPoints({
       edgeCount: 9,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 30 : 200,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 80 : 200,
       offsetX: window.matchMedia(`(max-width: 768px)`).matches
-        ? 130
+        ? window.innerWidth / 2 + 50
         : window.innerWidth - 250,
       offsetY: window.matchMedia(`(max-width: 768px)`).matches
-        ? 230
+        ? window.innerHeight / 2 + 50
         : window.innerHeight - 220,
     });
     const points7 = createPoints({
       edgeCount: 9,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 20 : 200,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 100 : 200,
       offsetX: window.matchMedia(`(max-width: 768px)`).matches
-        ? 90
+        ? 100
         : window.innerWidth - 350,
-      offsetY: window.matchMedia(`(max-width: 768px)`).matches ? 140 : 300,
+      offsetY: window.matchMedia(`(max-width: 768px)`).matches ? 100 : 300,
     });
     const pathDom = pathDomRef.current;
     (function animate() {
@@ -181,62 +185,53 @@ const Blob = ({
     return () => {};
   }, [resized]);
 
-  useEffect(() => {
-    const svgDom = svgDomRef.current;
-    const {xMin, xMax, yMin, yMax} = [...svgDom.children].reduce(
-      (acc, elem) => {
-        const {x, y, width, height} = elem.getBBox();
-        if (!acc.xMin || x < acc.xMin) {
-          acc.xMin = x;
-        }
-        if (!acc.xMax || x + width > acc.xMax) {
-          acc.xMax = x + width;
-        }
-        if (!acc.yMin || y < acc.yMin) {
-          acc.yMin = y;
-        }
-        if (!acc.yMax || y + height > acc.yMax) {
-          acc.yMax = y + height;
-        }
-        return acc;
-      },
-      {xMin: Infinity, yMin: Infinity, xMax: -Infinity, yMax: -Infinity}
-    );
-
-    const viewbox = `${xMin} ${yMin} ${xMax - xMin} ${yMax - yMin}`;
-
-    svgDom.setAttribute('viewBox', viewbox);
-  }, []);
-
   return (
-    <svg
-      ref={svgDomRef}
-      width={'100%'}
-      height={'100%'}
+    <div
       className={css`
-        display: block;
-        /* border: 1px solid; */
+        position: relative;
+        width: 100%;
+        height: 100%;
       `}
-      preserveAspectRatio="xMinYMin slice"
     >
-      <g filter="url(#gooey)">
-        <clipPath id={`morph-${id}`}>
-          <path
-            ref={pathDomRef}
-            d={''}
-            className={css`
-              stroke-linejoin: round;
-            `}
-          />
-        </clipPath>
-        <image
-          clipPath={`url(#morph-${id})`}
-          // href={`https://media.giphy.com/media/4ilFRqgbzbx4c/giphy.gif`}
-          href={cosme}
-          width={'100%'}
-        ></image>
-      </g>
-    </svg>
+      <div
+        className={css`
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+          background-image: url(${cosme});
+          background-size: cover;
+          filter: url('#gooey');
+          clip-path: url('#morph');
+        `}
+      ></div>
+      <svg
+        ref={svgDomRef}
+        width={'100%'}
+        height={'100%'}
+        className={css`
+          display: block;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        `}
+      >
+        <defs>
+          <clipPath id={`morph`}>
+            <path
+              ref={pathDomRef}
+              d={''}
+              className={css`
+                stroke-linejoin: round;
+              `}
+            />
+          </clipPath>
+        </defs>
+      </svg>
+    </div>
   );
 };
 
