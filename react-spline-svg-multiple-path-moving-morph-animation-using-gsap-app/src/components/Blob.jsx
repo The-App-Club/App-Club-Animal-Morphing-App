@@ -86,55 +86,71 @@ const Blob = ({}) => {
     return points;
   };
 
-  useEffect(() => {
-    const points1a = createPoints({
+  const points1a = useMemo(() => {
+    return createPoints({
       edgeCount: 5,
       radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
       offsetX: 0,
       offsetY: 0,
     });
-    const points1b = createPoints({
+  }, []);
+  const points1b = useMemo(() => {
+    return createPoints({
       edgeCount: 5,
       radius: window.matchMedia(`(max-width: 768px)`).matches ? 80 : 120,
       offsetX: 0,
       offsetY: 0,
     });
-    const points2a = createPoints({
+  }, []);
+  const points2a = useMemo(() => {
+    return createPoints({
       edgeCount: 6,
       radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 180,
       offsetX: 0,
       offsetY: 0,
     });
-    const points2b = createPoints({
+  }, []);
+  const points2b = useMemo(() => {
+    return createPoints({
       edgeCount: 6,
       radius: window.matchMedia(`(max-width: 768px)`).matches ? 100 : 220,
       offsetX: 0,
       offsetY: 0,
     });
-    const points3a = createPoints({
+  }, []);
+  const points3a = useMemo(() => {
+    return createPoints({
       edgeCount: 4,
       radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 180,
       offsetX: 0,
       offsetY: 0,
     });
-    const points3b = createPoints({
+  }, []);
+  const points3b = useMemo(() => {
+    return createPoints({
       edgeCount: 4,
       radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
       offsetX: 0,
       offsetY: 0,
     });
-    const points4a = createPoints({
+  }, []);
+  const points4a = useMemo(() => {
+    return createPoints({
       edgeCount: 7,
       radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 180,
       offsetX: 0,
       offsetY: 0,
     });
-    const points4b = createPoints({
+  }, []);
+  const points4b = useMemo(() => {
+    return createPoints({
       edgeCount: 7,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 80 : 420,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 80 : 220,
       offsetX: 0,
       offsetY: 0,
     });
+  }, []);
+  useEffect(() => {
     const pathDom1 = pathDomRef1.current;
     const pathDom2 = pathDomRef2.current;
     const pathDom3 = pathDomRef3.current;
@@ -144,7 +160,7 @@ const Blob = ({}) => {
       pathDom1.setAttribute('d', `${spline(points1b, 1, true)}`);
       pathDom2.setAttribute('d', `${spline(points2b, 1, true)}`);
       pathDom3.setAttribute('d', `${spline(points3b, 1, true)}`);
-      pathDom4.setAttribute('d', `${spline(points3b, 1, true)}`);
+      pathDom4.setAttribute('d', `${spline(points4b, 1, true)}`);
       doNoise({points: points1b, amplitude: 20});
       doNoise({points: points2b, amplitude: 10});
       doNoise({points: points3b, amplitude: 30});
