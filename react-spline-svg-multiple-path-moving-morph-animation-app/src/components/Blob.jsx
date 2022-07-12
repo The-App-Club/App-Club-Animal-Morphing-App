@@ -134,8 +134,47 @@ const Blob = ({
         y: window.innerHeight - 100,
       },
     ];
+    const points3PairsOffset = [
+      {
+        x: window.innerWidth - 100,
+        y: 0,
+      },
+      {
+        x: window.innerWidth / 2 + 20,
+        y: window.innerHeight / 2 - 30,
+      },
+      {
+        x: window.innerWidth / 2 + 220,
+        y: window.innerHeight / 2 - 130,
+      },
+      {
+        x: window.innerWidth - 100,
+        y: 0,
+      },
+    ];
+    const points4PairsOffset = [
+      {
+        x: 0,
+        y: window.innerHeight,
+      },
+      {
+        x: window.innerWidth / 2 - 20,
+        y: window.innerHeight / 2 + 30,
+      },
+      {
+        x: window.innerWidth / 2 - 220,
+        y: window.innerHeight / 2 + 130,
+      },
+      {
+        x: 0,
+        y: window.innerHeight,
+      },
+    ];
+
     const points1MoveXYList = d3.pairs(points1PairsOffset);
     const points2MoveXYList = d3.pairs(points2PairsOffset);
+    const points3MoveXYList = d3.pairs(points3PairsOffset);
+    const points4MoveXYList = d3.pairs(points4PairsOffset);
 
     const points1a = createPoints({
       edgeCount: 5,
@@ -175,48 +214,145 @@ const Blob = ({
     });
 
     const points2a = createPoints({
-      edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      edgeCount: 4,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
       offsetX: points2MoveXYList[0][0].x,
       offsetY: points2MoveXYList[0][0].y,
     });
     const points2b = createPoints({
-      edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      edgeCount: 4,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
       offsetX: points2MoveXYList[0][1].x,
       offsetY: points2MoveXYList[0][1].y,
     });
     const points2c = createPoints({
-      edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      edgeCount: 4,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
       offsetX: points2MoveXYList[1][0].x,
       offsetY: points2MoveXYList[1][0].y,
     });
     const points2d = createPoints({
-      edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      edgeCount: 4,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
       offsetX: points2MoveXYList[1][1].x,
       offsetY: points2MoveXYList[1][1].y,
     });
     const points2e = createPoints({
-      edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      edgeCount: 4,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
       offsetX: points2MoveXYList[2][0].x,
       offsetY: points2MoveXYList[2][0].y,
     });
     const points2f = createPoints({
-      edgeCount: 5,
-      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      edgeCount: 4,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
       offsetX: points2MoveXYList[2][1].x,
       offsetY: points2MoveXYList[2][1].y,
     });
 
-    const a = spline(points1a, 1, true) + spline(points2a, 1, true);
-    const b = spline(points1b, 1, true) + spline(points2b, 1, true);
-    const c = spline(points1c, 1, true) + spline(points2c, 1, true);
-    const d = spline(points1d, 1, true) + spline(points2d, 1, true);
-    const e = spline(points1e, 1, true) + spline(points2e, 1, true);
-    const f = spline(points1f, 1, true) + spline(points2f, 1, true);
+    const points3a = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points3MoveXYList[0][0].x,
+      offsetY: points3MoveXYList[0][0].y,
+    });
+    const points3b = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points3MoveXYList[0][1].x,
+      offsetY: points3MoveXYList[0][1].y,
+    });
+    const points3c = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points3MoveXYList[1][0].x,
+      offsetY: points3MoveXYList[1][0].y,
+    });
+    const points3d = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points3MoveXYList[1][1].x,
+      offsetY: points3MoveXYList[1][1].y,
+    });
+    const points3e = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points3MoveXYList[2][0].x,
+      offsetY: points3MoveXYList[2][0].y,
+    });
+    const points3f = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points3MoveXYList[2][1].x,
+      offsetY: points3MoveXYList[2][1].y,
+    });
+
+    const points4a = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points4MoveXYList[0][0].x,
+      offsetY: points4MoveXYList[0][0].y,
+    });
+    const points4b = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points4MoveXYList[0][1].x,
+      offsetY: points4MoveXYList[0][1].y,
+    });
+    const points4c = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 220,
+      offsetX: points4MoveXYList[1][0].x,
+      offsetY: points4MoveXYList[1][0].y,
+    });
+    const points4d = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
+      offsetX: points4MoveXYList[1][1].x,
+      offsetY: points4MoveXYList[1][1].y,
+    });
+    const points4e = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
+      offsetX: points4MoveXYList[2][0].x,
+      offsetY: points4MoveXYList[2][0].y,
+    });
+    const points4f = createPoints({
+      edgeCount: 6,
+      radius: window.matchMedia(`(max-width: 768px)`).matches ? 120 : 320,
+      offsetX: points4MoveXYList[2][1].x,
+      offsetY: points4MoveXYList[2][1].y,
+    });
+    const a =
+      spline(points1a, 1, true) +
+      spline(points2a, 1, true) +
+      spline(points3a, 1, true) +
+      spline(points4a, 1, true);
+    const b =
+      spline(points1b, 1, true) +
+      spline(points2b, 1, true) +
+      spline(points3b, 1, true) +
+      spline(points4b, 1, true);
+    const c =
+      spline(points1c, 1, true) +
+      spline(points2c, 1, true) +
+      spline(points3c, 1, true) +
+      spline(points4c, 1, true);
+    const d =
+      spline(points1d, 1, true) +
+      spline(points2d, 1, true) +
+      spline(points3d, 1, true) +
+      spline(points4d, 1, true);
+    const e =
+      spline(points1e, 1, true) +
+      spline(points2e, 1, true) +
+      spline(points3e, 1, true) +
+      spline(points4e, 1, true);
+    const f =
+      spline(points1f, 1, true) +
+      spline(points2f, 1, true) +
+      spline(points3f, 1, true) +
+      spline(points4f, 1, true);
     tl.to(pathDom, {
       attr: {d: b},
       duration: 1.2,
