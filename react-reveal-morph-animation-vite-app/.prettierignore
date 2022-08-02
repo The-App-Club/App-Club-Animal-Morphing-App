@@ -1,0 +1,13 @@
+node_modules
+.gitignore
+.prettierignore
+.stylelintignore
+.firebase*
+*webp
+*jpg
+*png
+*svg
+*ico
+.env
+yarn.lock
+.gitkeep
